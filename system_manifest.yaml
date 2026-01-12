@@ -1,0 +1,36 @@
+system:
+  name: auto-evolution-system
+  mode: autonomous
+  environment: production
+
+autonomy:
+  enabled: true
+  auto_start: true
+  auto_heal: true
+  auto_fix: true
+
+predictor:
+  no_regret_mode: true
+  regret_threshold: 0.15
+  ensemble_enabled: true
+
+crawler:
+  enabled: true
+  interval_seconds: 86400 # Daily
+
+governance:
+  enabled: true
+  emergency_stop: true
+
+resources:
+  max_jobs_per_hour: 10
+
+observability:
+  metrics: true
+  logs: true
+
+evolution_engine:
+  drift_analysis: true
+  duplication_detection: true
+  proposal_generation: true
+  todo_queuing: true
