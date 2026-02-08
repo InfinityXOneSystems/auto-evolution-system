@@ -1,0 +1,14 @@
+# Requirements for Autonomous Evolution System
+# Python 3.8+
+
+# System monitoring and diagnostics
+psutil>=5.9.0
+
+# Scheduling
+schedule>=1.1.0
+
+# YAML parsing for configuration
+PyYAML>=6.0
+
+# Additional utilities
+python-dateutil>=2.8.0
