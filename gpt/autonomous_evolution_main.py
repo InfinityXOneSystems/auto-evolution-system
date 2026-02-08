@@ -21,6 +21,8 @@ from datetime import datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from quantum_x_integration import QuantumXIntegration
+from immediate_quantum_startup import ImmediateQuantumStartup
+from system_conflict_detector import SystemConflictDetector
 from self_diagnosis import SelfDiagnosisSystem
 from self_fixing_healing import SelfFixingSystem, SelfHealingSystem
 from self_cleaning_maintaining import SelfCleaningSystem, SelfMaintainingSystem
@@ -70,6 +72,11 @@ class AutonomousEvolutionSystem:
         self.orchestrator = AutonomousOrchestrator(self.config)
         
         logger.info("All subsystems initialized successfully")
+        
+        # Check if immediate quantum startup is enabled
+        if self.config.get("quantum_x_integration", {}).get("immediate_start", False):
+            logger.info("Immediate quantum-x startup is enabled - will execute on demand")
+
     
     def _load_config(self, config_path: str = None) -> Dict[str, Any]:
         """
@@ -282,6 +289,37 @@ class AutonomousEvolutionSystem:
                 "timestamp": datetime.now().isoformat()
             }
     
+    def immediate_quantum_startup(self) -> Dict[str, Any]:
+        """
+        Start quantum-x integration immediately with conflict detection.
+        
+        Returns:
+            Dict containing immediate startup results
+        """
+        logger.info("=" * 80)
+        logger.info("IMMEDIATE QUANTUM-X STARTUP")
+        logger.info("=" * 80)
+        
+        try:
+            # Get quantum-x path from config
+            quantum_x_path = self.config.get("quantum_x_integration", {}).get("local_path", "/tmp/quantum-x-builder")
+            
+            # Initialize immediate startup
+            startup = ImmediateQuantumStartup(quantum_x_path=quantum_x_path)
+            
+            # Execute immediate startup with conflict detection
+            result = startup.execute_immediate_startup()
+            
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error during immediate quantum startup: {e}", exc_info=True)
+            return {
+                "success": False,
+                "error": str(e),
+                "timestamp": datetime.now().isoformat()
+            }
+    
     def get_system_status(self) -> Dict[str, Any]:
         """
         Get comprehensive system status.
@@ -317,9 +355,9 @@ def main():
     
     parser.add_argument(
         "--mode",
-        choices=["cycle", "autonomous", "status"],
+        choices=["cycle", "autonomous", "status", "quantum-start"],
         default="cycle",
-        help="Operation mode: cycle (run once), autonomous (continuous), status (show status)"
+        help="Operation mode: cycle (run once), autonomous (continuous), status (show status), quantum-start (immediate quantum-x startup)"
     )
     
     parser.add_argument(
@@ -363,6 +401,20 @@ def main():
         print("SYSTEM STATUS")
         print("=" * 80)
         print(json.dumps(status, indent=2))
+    
+    elif args.mode == "quantum-start":
+        # Immediate quantum-x startup with conflict detection
+        result = system.immediate_quantum_startup()
+        print("\n" + "=" * 80)
+        print("QUANTUM-X IMMEDIATE STARTUP RESULTS")
+        print("=" * 80)
+        print(json.dumps(result, indent=2))
+        
+        if result.get("success"):
+            print("\n✓ Quantum-X Builder successfully integrated and started!")
+        else:
+            print(f"\n✗ Quantum-X startup failed: {result.get('error')}")
+            sys.exit(1)
 
 
 if __name__ == "__main__":

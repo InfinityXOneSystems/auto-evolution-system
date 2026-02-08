@@ -33,6 +33,9 @@ quantum_x_integration:
   auto_clone: true
   auto_analyze: true
   auto_improve: true
+  immediate_start: true  # Start immediately without waiting for scheduled time
+  conflict_detection: true  # Check for conflicts before integration
+  local_path: /tmp/quantum-x-builder  # Path for quantum-x-builder clone
 
 schedule:
   daily_evolution_time: "02:00"

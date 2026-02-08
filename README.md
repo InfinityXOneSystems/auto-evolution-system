@@ -57,6 +57,21 @@ pip install -r requirements.txt
 
 ## Usage
 
+### Immediate Quantum-X Integration
+Immediately integrate quantum-x-builder with conflict detection:
+```bash
+python gpt/autonomous_evolution_main.py --mode quantum-start
+```
+
+This performs:
+- ✅ Cross-reference check between systems
+- ✅ Conflict detection and resolution
+- ✅ Immediate installation and integration
+- ✅ Harmonious system validation
+- ✅ No waiting for scheduled time
+
+See [QUANTUM_INTEGRATION.md](QUANTUM_INTEGRATION.md) for detailed guide.
+
 ### Run a Single Evolution Cycle
 Execute one complete autonomous evolution cycle:
 ```bash
