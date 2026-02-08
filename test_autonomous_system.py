@@ -14,6 +14,8 @@ import unittest
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'gpt'))
 
 from quantum_x_integration import QuantumXIntegration
+from immediate_quantum_startup import ImmediateQuantumStartup
+from system_conflict_detector import SystemConflictDetector
 from self_diagnosis import SelfDiagnosisSystem
 from self_fixing_healing import SelfFixingSystem, SelfHealingSystem
 from self_cleaning_maintaining import SelfCleaningSystem, SelfMaintainingSystem
@@ -138,6 +140,32 @@ class TestAutonomousEvolutionSystem(unittest.TestCase):
         
         self.assertIn('total_recommendations', strategy)
         print("✓ System Integration: PASSED")
+    
+    def test_system_conflict_detector(self):
+        """Test conflict detection system."""
+        detector = SystemConflictDetector()
+        self.assertIsNotNone(detector)
+        
+        # Test path conflict check
+        path_check = detector.check_path_conflicts()
+        self.assertIn('success', path_check)
+        self.assertIn('conflicts', path_check)
+        
+        # Test module conflict check
+        module_check = detector.check_module_conflicts()
+        self.assertIn('success', module_check)
+        self.assertIn('local_modules', module_check)
+        
+        print("✓ Conflict Detection System: PASSED")
+    
+    def test_immediate_quantum_startup_init(self):
+        """Test immediate quantum startup initialization."""
+        startup = ImmediateQuantumStartup()
+        self.assertIsNotNone(startup)
+        self.assertIsNotNone(startup.conflict_detector)
+        self.assertIsNotNone(startup.quantum_x)
+        
+        print("✓ Immediate Quantum Startup: PASSED")
 
 
 def run_tests():

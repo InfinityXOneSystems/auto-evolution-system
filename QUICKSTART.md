@@ -23,7 +23,23 @@ python test_autonomous_system.py
 python gpt/autonomous_evolution_main.py --mode status
 ```
 
-### 3. Run First Cycle (3 minutes)
+### 3. Immediate Quantum-X Integration (2 minutes)
+
+```bash
+# Immediately integrate quantum-x-builder with conflict detection
+python gpt/autonomous_evolution_main.py --mode quantum-start
+```
+
+This will:
+- ✅ Check for conflicts between systems
+- ✅ Clone quantum-x-builder repository immediately
+- ✅ Analyze the codebase for integration
+- ✅ Validate installation and harmonious integration
+- ✅ Start immediately (no waiting for scheduled time)
+
+---
+
+### 4. Run First Cycle (3 minutes)
 
 ```bash
 # Execute a single autonomous evolution cycle
@@ -48,6 +64,22 @@ python gpt/autonomous_evolution_main.py --mode autonomous
 ```
 
 **That's it!** The system is now fully autonomous and requires zero human intervention.
+
+---
+
+## Quick Integration
+
+For immediate quantum-x-builder integration without full cycle:
+
+```bash
+# Option 1: Via main system
+python gpt/autonomous_evolution_main.py --mode quantum-start
+
+# Option 2: Standalone script
+python gpt/immediate_quantum_startup.py
+```
+
+See [QUANTUM_INTEGRATION.md](QUANTUM_INTEGRATION.md) for detailed integration guide.
 
 ---
 
