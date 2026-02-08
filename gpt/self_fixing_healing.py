@@ -68,7 +68,7 @@ class SelfFixingSystem:
                                         "action": "created"
                                     })
                                     logging.info(f"Created missing __init__.py: {init_file}")
-                        except:
+                        except Exception:
                             pass
             
             return {
@@ -124,7 +124,7 @@ class SelfFixingSystem:
                                 "line": e.lineno
                             })
                             logging.warning(f"Syntax error in {file_path}: {e}")
-                        except:
+                        except Exception:
                             pass
             
             return {
@@ -174,7 +174,7 @@ class SelfFixingSystem:
                                 "action": "fixed"
                             })
                             logging.info(f"Fixed permissions for: {path}")
-                        except:
+                        except Exception:
                             pass
             
             return {

@@ -132,7 +132,7 @@ class SelfDiagnosisSystem:
                                         "lines": len(lines),
                                         "issue": "File too long"
                                     })
-                        except:
+                        except Exception:
                             pass
             
             if metrics["python_files"] > 0:

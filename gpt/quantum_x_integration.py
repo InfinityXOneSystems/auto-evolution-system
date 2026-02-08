@@ -119,7 +119,7 @@ class QuantumXIntegration:
                         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                             lines = len(f.readlines())
                             total_lines += lines
-                    except:
+                    except Exception:
                         pass
             
             analysis = {

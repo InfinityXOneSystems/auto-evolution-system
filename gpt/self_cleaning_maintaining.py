@@ -171,7 +171,7 @@ class SelfCleaningSystem:
                                     })
                                 else:
                                     file_hashes[file_hash] = file_path
-                        except:
+                        except Exception:
                             pass
             
             logging.info(f"Found {len(duplicates)} duplicate files")
@@ -433,7 +433,7 @@ class SelfMaintainingSystem:
                                         "issue": "Potential hardcoded password",
                                         "severity": "critical"
                                     })
-                        except:
+                        except Exception:
                             pass
             
             logging.info(f"Security scan found {len(security_issues)} issues")

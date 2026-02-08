@@ -282,11 +282,11 @@ class AutonomousOrchestrator:
         
         try:
             # Import and initialize all systems
-            from .quantum_x_integration import QuantumXIntegration
-            from .self_diagnosis import SelfDiagnosisSystem
-            from .self_fixing_healing import SelfFixingSystem, SelfHealingSystem
-            from .self_cleaning_maintaining import SelfCleaningSystem, SelfMaintainingSystem
-            from .auto_recommendation import AutoRecommendationSystem
+            from quantum_x_integration import QuantumXIntegration
+            from self_diagnosis import SelfDiagnosisSystem
+            from self_fixing_healing import SelfFixingSystem, SelfHealingSystem
+            from self_cleaning_maintaining import SelfCleaningSystem, SelfMaintainingSystem
+            from auto_recommendation import AutoRecommendationSystem
             
             self.quantum_x = QuantumXIntegration()
             self.diagnosis = SelfDiagnosisSystem()
@@ -390,7 +390,7 @@ class AutonomousOrchestrator:
         """Run daily evolution process."""
         logging.info("Running daily evolution process...")
         
-        from .auto_evolution_engine import AutoEvolutionEngine
+        from auto_evolution_engine import AutoEvolutionEngine
         
         engine = AutoEvolutionEngine()
         
