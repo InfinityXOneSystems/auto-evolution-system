@@ -117,6 +117,8 @@ class SystemConflictDetector:
                             "module": module,
                             "message": f"Local module '{module}' has same name as installed package"
                         })
+        except subprocess.TimeoutExpired:
+            logging.warning("pip list operation timed out after 30 seconds")
         except Exception as e:
             logging.warning(f"Could not check installed packages: {e}")
         
@@ -199,6 +201,8 @@ class SystemConflictDetector:
                             "severity": "high",
                             "message": line.strip()
                         })
+        except subprocess.TimeoutExpired:
+            logging.warning("pip check operation timed out after 30 seconds")
         except Exception as e:
             logging.warning(f"Could not check dependencies: {e}")
         

@@ -180,13 +180,20 @@ class ImmediateQuantumStartup:
         else:
             logger.warning("⚠ Git repository structure not found")
         
-        # Check 3: File count
+        # Check 3: File count (with reasonable limit)
         if repo_exists:
-            file_count = sum(1 for _, _, files in os.walk(self.quantum_x_path) for _ in files)
-            validation_results["checks"]["file_count"] = file_count
+            file_count = 0
+            max_files_to_count = 10000  # Reasonable limit to avoid long waits
+            
+            for root, dirs, files in os.walk(self.quantum_x_path):
+                file_count += len(files)
+                if file_count > max_files_to_count:
+                    break  # Early termination for large repos
+            
+            validation_results["checks"]["file_count"] = min(file_count, max_files_to_count)
             
             if file_count > 0:
-                logger.info(f"✓ Repository contains {file_count} files")
+                logger.info(f"✓ Repository contains {file_count}+ files" if file_count >= max_files_to_count else f"✓ Repository contains {file_count} files")
             else:
                 logger.warning("⚠ Repository appears to be empty")
         
@@ -203,7 +210,8 @@ class ImmediateQuantumStartup:
         validation_results["overall_success"] = (
             repo_exists and 
             is_valid_repo and 
-            validation_results["checks"].get("file_count", 0) > 0
+            validation_results["checks"].get("file_count", 0) > 0 and
+            conflict_check.get("success", False)  # Include conflict check result
         )
         
         if validation_results["overall_success"]:
